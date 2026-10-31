@@ -1,0 +1,327 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Playfair+Display:wght@500;600;700&display=swap');
+
+:root {
+    --emerald: #00d99a;
+    --deep-green: #001b12;
+    --white: #f4fff9;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    font-family: 'Manrope', sans-serif;
+    color: var(--white);
+    background:
+        radial-gradient(ellipse at 15% 20%, #075b3d 0%, transparent 45%),
+        radial-gradient(ellipse at 85% 75%, #08734b 0%, transparent 45%),
+        linear-gradient(135deg, #00150e, #003b27, #00150e);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+/* LUZES AMBIENTAIS */
+.ambient {
+    position: fixed;
+    width: 350px;
+    height: 350px;
+    border-radius: 50%;
+    filter: blur(100px);
+    opacity: .2;
+    pointer-events: none;
+    animation: float 10s ease-in-out infinite alternate;
+}
+
+.ambient-one {
+    background: #00e69a;
+    top: 10%;
+    left: -150px;
+}
+
+.ambient-two {
+    background: #00a86b;
+    right: -150px;
+    bottom: 5%;
+    animation-delay: -5s;
+}
+
+/* LIQUID GLASS */
+.glass {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    background: rgba(220, 255, 240, .075);
+    backdrop-filter: blur(28px) saturate(180%);
+    -webkit-backdrop-filter: blur(28px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, .2);
+    box-shadow:
+        inset 0 1px 1px rgba(255,255,255,.22),
+        inset 0 -1px 1px rgba(255,255,255,.05),
+        0 20px 60px rgba(0,0,0,.25);
+}
+
+/* REFLEXO DINÂMICO */
+.glass::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background: radial-gradient(
+        circle at var(--mx, 50%) var(--my, 0%),
+        rgba(255,255,255,.25),
+        transparent 35%
+    );
+    opacity: .8;
+    transition: opacity .3s;
+}
+
+/* MENU */
+header {
+    margin: 20px 25px;
+    padding: 20px 30px;
+    border-radius: 22px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    animation: appear .9s ease both;
+}
+
+.logo {
+    font-family: 'Playfair Display', serif;
+    font-size: 25px;
+    font-weight: 600;
+}
+
+nav {
+    display: flex;
+    gap: 30px;
+}
+
+nav a {
+    color: white;
+    text-decoration: none;
+    font-size: 14px;
+    transition: .3s;
+}
+
+nav a:hover {
+    color: var(--emerald);
+}
+
+/* TEXTO PRINCIPAL */
+main p {
+    font-size: 16px;
+    line-height: 1.8;
+    color: rgba(255,255,255,.75);
+}
+
+/* BOTÕES */
+button {
+    position: relative;
+    z-index: 1;
+    margin-top: 35px;
+    padding: 16px 35px;
+    border: 1px solid rgba(255,255,255,.5);
+    border-radius: 50px;
+    background: rgba(255,255,255,.1);
+    backdrop-filter: blur(15px);
+    -webkit-backdrop-filter: blur(15px);
+    color: white;
+    font-size: 15px;
+    font-family: inherit;
+    cursor: pointer;
+    box-shadow:
+        inset 0 1px 2px rgba(255,255,255,.3),
+        0 8px 30px rgba(0,0,0,.2);
+    transform: scale(1);
+    transition:
+        transform .4s cubic-bezier(.2, 1.8, .4, 1),
+        background .3s ease,
+        box-shadow .3s ease,
+        border-color .3s ease;
+}
+
+button span {
+    margin-left: 12px;
+    color: var(--emerald);
+}
+
+button:hover {
+    transform: scale(1.18);
+    background: rgba(0, 220, 145, .25);
+    border-color: #00e6a0;
+    box-shadow:
+        0 0 15px rgba(0, 230, 160, .35),
+        0 0 40px rgba(0, 230, 160, .2),
+        inset 0 0 15px rgba(255,255,255,.15);
+}
+
+button:active {
+    transform: scale(.94);
+}
+
+button:focus-visible {
+    outline: 2px solid #00e6a0;
+    outline-offset: 5px;
+}
+
+.mensagem {
+    margin-top: 20px;
+}
+
+/* RODAPÉ */
+footer {
+    padding: 25px;
+    display: flex;
+    justify-content: space-between;
+    color: rgba(255,255,255,.5);
+    font-size: 10px;
+    letter-spacing: 2px;
+}
+
+/* ANIMAÇÕES */
+@keyframes appear {
+    from {
+        opacity: 0;
+        transform: translateY(25px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes float {
+    from {
+        transform: translate(0,0);
+    }
+    to {
+        transform: translate(40px,30px);
+    }
+}
+
+/* PAINEL DO TÍTULO E SUBTÍTULO */
+.intro-panel {
+    border-radius: 24px;
+    padding: 35px;
+    margin: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    overflow: hidden;
+    text-align: center;
+    animation: appear 1.2s ease both;
+}
+
+.intro-panel h1 {
+    margin: 0 0 10px;
+    font-family: 'Playfair Display', serif;
+    font-size: 42px;
+}
+
+.intro-panel p {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+}
+
+/* ÁREA DO BOTÃO DA CARTILHA */
+.cartilha-section {
+    display: flex;
+    justify-content: center;
+    padding: 45px 20px;
+}
+
+/* BOTÃO LIQUID GLASS DA CARTILHA */
+.cartilha-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 25px;
+    width: min(650px, 85%);
+    min-height: 110px;
+    padding: 30px 40px;
+    box-sizing: border-box;
+    border-radius: 32px;
+    color: white;
+    text-decoration: none;
+    font-family: 'Manrope', sans-serif;
+    font-size: 28px;
+    font-weight: 700;
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(25px) saturate(180%);
+    -webkit-backdrop-filter: blur(25px) saturate(180%);
+    border: 1px solid rgba(255, 255, 255, 0.35);
+    box-shadow:
+        0 12px 40px rgba(0, 0, 0, 0.20),
+        inset 0 2px 2px rgba(255, 255, 255, 0.30);
+    transition: all 0.35s ease;
+}
+
+.cartilha-button:hover {
+    transform: translateY(-6px) scale(1.02);
+    background: rgba(255, 255, 255, 0.20);
+    border-color: rgba(255, 255, 255, 0.65);
+    box-shadow:
+        0 18px 50px rgba(0, 0, 0, 0.25),
+        inset 0 2px 3px rgba(255, 255, 255, 0.4);
+}
+
+.cartilha-button span {
+    font-size: 32px;
+}
+
+/* CELULARES */
+@media (max-width: 600px) {
+    header {
+        margin: 12px;
+        padding: 18px;
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    nav {
+        gap: 20px;
+    }
+
+    .intro-panel {
+        padding: 65px 20px;
+    }
+
+    .cartilha-button {
+        width: 100%;
+        min-height: 90px;
+        padding: 24px;
+        font-size: 22px;
+    }
+
+    footer {
+        gap: 15px;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+
+/* ACESSIBILIDADE */
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+    }
+}
